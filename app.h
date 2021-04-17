@@ -15,6 +15,8 @@
 
 #include <QSettings>
 
+#include <QCloseEvent>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class App; }
 QT_END_NAMESPACE
@@ -28,6 +30,9 @@ public:
     ~App();
 
 private slots:
+
+    void closeEvent(QCloseEvent *event);
+
     void on_pathButton_clicked();
 
     void on_songList_itemActivated(QListWidgetItem *item);    
@@ -38,12 +43,9 @@ private:
     QString beat_path;
     QString customSongs_path;
 
-    QString get_beat_path();
-    QString get_customSongs_path();
-
     void loadTextFile(QString);
 
-    QSettings appSettings();
+    QString settingsFile;
     void readSettings();
     void writeSettings();
 };
